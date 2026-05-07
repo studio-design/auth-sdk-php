@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /**
- * CodeChallengeMethod
+ * IntrospectErrorCode
  *
  * PHP version 8.1
  *
@@ -30,16 +30,18 @@ declare(strict_types=1);
 namespace Studio\Auth\Model;
 
 /**
- * CodeChallengeMethod Class Doc Comment
+ * IntrospectErrorCode Class Doc Comment
  *
- * @description PKCE コードチャレンジメソッド。本実装は S256（SHA-256）のみをサポートします。  **RFC 7636 Section 4.3**: - &#x60;S256&#x60;: code_challenge &#x3D; BASE64URL(SHA256(ASCII(code_verifier))) - &#x60;plain&#x60;: セキュリティ上のリスクがあるため、本実装では非サポート  クライアントは必ず S256 メソッドを使用してください。
+ * @description RFC 7662 Section 2.3 および RFC 6749 Section 5.2 で定義される &#x60;/oauth/introspect&#x60; エンドポイントのエラーコード。  - &#x60;invalid_request&#x60;: リクエストに必須パラメータが不足、無効なパラメータ値、重複パラメータ、または不正な形式 - &#x60;invalid_client&#x60;: クライアント認証失敗（未知のクライアント、認証情報なし、サポートされていない認証方式）
  * @package  Studio\Auth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-enum CodeChallengeMethod: string
+enum IntrospectErrorCode: string
 {
-    case S256 = 'S256';
+    case INVALID_REQUEST = 'invalid_request';
+
+    case INVALID_CLIENT = 'invalid_client';
 }
 
 
