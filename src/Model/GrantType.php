@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /**
- * CodeChallengeMethod
+ * GrantType
  *
  * PHP version 8.1
  *
@@ -30,16 +30,18 @@ declare(strict_types=1);
 namespace Studio\Auth\Model;
 
 /**
- * CodeChallengeMethod Class Doc Comment
+ * GrantType Class Doc Comment
  *
- * @description PKCE コードチャレンジメソッド。本実装は S256（SHA-256）のみをサポートします。  **RFC 7636 Section 4.3**: - &#x60;S256&#x60;: code_challenge &#x3D; BASE64URL(SHA256(ASCII(code_verifier))) - &#x60;plain&#x60;: セキュリティ上のリスクがあるため、本実装では非サポート  クライアントは必ず S256 メソッドを使用してください。
+ * @description OAuth 2.0 グラントタイプ (RFC 6749)。本実装は Authorization Code および Refresh Token の2種のみをサポートします。  - &#x60;authorization_code&#x60;: Authorization Code グラント (RFC 6749 Section 4.1)。&#x60;/oauth/authorize&#x60; で発行された認可コードをアクセストークンに交換します。 - &#x60;refresh_token&#x60;: Refresh Token グラント (RFC 6749 Section 6)。有効期限切れのアクセストークンを再発行します。
  * @package  Studio\Auth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-enum CodeChallengeMethod: string
+enum GrantType: string
 {
-    case S256 = 'S256';
+    case AUTHORIZATION_CODE = 'authorization_code';
+
+    case REFRESH_TOKEN = 'refresh_token';
 }
 
 

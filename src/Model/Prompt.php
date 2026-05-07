@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /**
- * CodeChallengeMethod
+ * Prompt
  *
  * PHP version 8.1
  *
@@ -30,16 +30,18 @@ declare(strict_types=1);
 namespace Studio\Auth\Model;
 
 /**
- * CodeChallengeMethod Class Doc Comment
+ * Prompt Class Doc Comment
  *
- * @description PKCE コードチャレンジメソッド。本実装は S256（SHA-256）のみをサポートします。  **RFC 7636 Section 4.3**: - &#x60;S256&#x60;: code_challenge &#x3D; BASE64URL(SHA256(ASCII(code_verifier))) - &#x60;plain&#x60;: セキュリティ上のリスクがあるため、本実装では非サポート  クライアントは必ず S256 メソッドを使用してください。
+ * @description OIDC 認証プロンプト制御 (OIDC Core 1.0 Section 3.1.2.1 の subset)。 - &#x60;none&#x60;: ユーザーインタラクションなしで認証を試みる。セッションがない場合は &#x60;login_required&#x60; エラーをリダイレクト - &#x60;login&#x60;: 既存セッションを無視して再認証を強制 - 未指定: セッションがあれば利用、なければ IdP リダイレクト
  * @package  Studio\Auth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-enum CodeChallengeMethod: string
+enum Prompt: string
 {
-    case S256 = 'S256';
+    case NONE = 'none';
+
+    case LOGIN = 'login';
 }
 
 

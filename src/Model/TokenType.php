@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /**
- * CodeChallengeMethod
+ * TokenType
  *
  * PHP version 8.1
  *
@@ -30,16 +30,16 @@ declare(strict_types=1);
 namespace Studio\Auth\Model;
 
 /**
- * CodeChallengeMethod Class Doc Comment
+ * TokenType Class Doc Comment
  *
- * @description PKCE コードチャレンジメソッド。本実装は S256（SHA-256）のみをサポートします。  **RFC 7636 Section 4.3**: - &#x60;S256&#x60;: code_challenge &#x3D; BASE64URL(SHA256(ASCII(code_verifier))) - &#x60;plain&#x60;: セキュリティ上のリスクがあるため、本実装では非サポート  クライアントは必ず S256 メソッドを使用してください。
+ * @description OAuth 2.0 トークンタイプ (RFC 6749 Section 7.1 / RFC 6750)。本実装は Bearer トークンのみをサポートします。  - &#x60;Bearer&#x60;: HTTP &#x60;Authorization: Bearer {token}&#x60; ヘッダーで提示する Bearer トークン。
  * @package  Studio\Auth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-enum CodeChallengeMethod: string
+enum TokenType: string
 {
-    case S256 = 'S256';
+    case BEARER = 'Bearer';
 }
 
 
