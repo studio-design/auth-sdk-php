@@ -1587,7 +1587,7 @@ class AuthApi
      * @param  \Studio\Auth\Model\CodeChallengeMethod $codeChallengeMethod codeChallengeMethod (required)
      * @param  string $codeChallenge codeChallenge (required)
      * @param  string $nonce OIDC リプレイ攻撃対策用の値。レスポンスに含めて検証します。 (required)
-     * @param  string|null $organizationId 組織固有の SSO プロバイダ（Okta, Azure AD 等）へルーティングするための組織 ID。未指定時は AuthKit のデフォルトログインフローが使用されます。 (optional)
+     * @param  string|null $organizationId 認可対象の組織を指定する組織 ID（認可サーバが発行する UUID）。  IdP リダイレクトを伴うフローでは、指定された組織は組織固有の SSO プロバイダ（Okta, Azure AD 等）へのルーティングに使用されます。存在しない、非アクティブ、または IdP 未連携の組織 ID を指定した場合はエラーになります。  未指定時は認可サーバが下記の順序で組織を解決します:   - 認可サーバ側でユーザが active な組織に対して active なメンバーシップをちょうど 1 つだけ持つ場合、その組織に自動的にバインドして &#x60;org_id&#x60; クレーム付きの id_token を発行します（silent SSO / 新規ログイン両フロー）。   - 上記に該当しない場合（複数組織所属 / 組織未所属）は &#x60;org_id&#x60; クレーム無しの id_token が発行されます。 (optional)
      * @param  string|null $invitationToken WorkOS 招待メールに含まれるトークン。指定時は WorkOS AuthKit に招待受諾フローとしてパススルーされます。 (optional)
      * @param  \Studio\Auth\Model\Prompt|null $prompt prompt (optional)
      * @param  string|null $context WorkOS AuthKit の Sign-in endpoint から渡される不透明トークン。招待受諾やパスワードリセット等、アプリ外から開始されたフローのコンテキストを保持します。 (optional)
@@ -1629,7 +1629,7 @@ class AuthApi
      * @param  \Studio\Auth\Model\CodeChallengeMethod $codeChallengeMethod (required)
      * @param  string $codeChallenge (required)
      * @param  string $nonce OIDC リプレイ攻撃対策用の値。レスポンスに含めて検証します。 (required)
-     * @param  string|null $organizationId 組織固有の SSO プロバイダ（Okta, Azure AD 等）へルーティングするための組織 ID。未指定時は AuthKit のデフォルトログインフローが使用されます。 (optional)
+     * @param  string|null $organizationId 認可対象の組織を指定する組織 ID（認可サーバが発行する UUID）。  IdP リダイレクトを伴うフローでは、指定された組織は組織固有の SSO プロバイダ（Okta, Azure AD 等）へのルーティングに使用されます。存在しない、非アクティブ、または IdP 未連携の組織 ID を指定した場合はエラーになります。  未指定時は認可サーバが下記の順序で組織を解決します:   - 認可サーバ側でユーザが active な組織に対して active なメンバーシップをちょうど 1 つだけ持つ場合、その組織に自動的にバインドして &#x60;org_id&#x60; クレーム付きの id_token を発行します（silent SSO / 新規ログイン両フロー）。   - 上記に該当しない場合（複数組織所属 / 組織未所属）は &#x60;org_id&#x60; クレーム無しの id_token が発行されます。 (optional)
      * @param  string|null $invitationToken WorkOS 招待メールに含まれるトークン。指定時は WorkOS AuthKit に招待受諾フローとしてパススルーされます。 (optional)
      * @param  \Studio\Auth\Model\Prompt|null $prompt (optional)
      * @param  string|null $context WorkOS AuthKit の Sign-in endpoint から渡される不透明トークン。招待受諾やパスワードリセット等、アプリ外から開始されたフローのコンテキストを保持します。 (optional)
@@ -1721,7 +1721,7 @@ class AuthApi
      * @param  \Studio\Auth\Model\CodeChallengeMethod $codeChallengeMethod (required)
      * @param  string $codeChallenge (required)
      * @param  string $nonce OIDC リプレイ攻撃対策用の値。レスポンスに含めて検証します。 (required)
-     * @param  string|null $organizationId 組織固有の SSO プロバイダ（Okta, Azure AD 等）へルーティングするための組織 ID。未指定時は AuthKit のデフォルトログインフローが使用されます。 (optional)
+     * @param  string|null $organizationId 認可対象の組織を指定する組織 ID（認可サーバが発行する UUID）。  IdP リダイレクトを伴うフローでは、指定された組織は組織固有の SSO プロバイダ（Okta, Azure AD 等）へのルーティングに使用されます。存在しない、非アクティブ、または IdP 未連携の組織 ID を指定した場合はエラーになります。  未指定時は認可サーバが下記の順序で組織を解決します:   - 認可サーバ側でユーザが active な組織に対して active なメンバーシップをちょうど 1 つだけ持つ場合、その組織に自動的にバインドして &#x60;org_id&#x60; クレーム付きの id_token を発行します（silent SSO / 新規ログイン両フロー）。   - 上記に該当しない場合（複数組織所属 / 組織未所属）は &#x60;org_id&#x60; クレーム無しの id_token が発行されます。 (optional)
      * @param  string|null $invitationToken WorkOS 招待メールに含まれるトークン。指定時は WorkOS AuthKit に招待受諾フローとしてパススルーされます。 (optional)
      * @param  \Studio\Auth\Model\Prompt|null $prompt (optional)
      * @param  string|null $context WorkOS AuthKit の Sign-in endpoint から渡される不透明トークン。招待受諾やパスワードリセット等、アプリ外から開始されたフローのコンテキストを保持します。 (optional)
@@ -1767,7 +1767,7 @@ class AuthApi
      * @param  \Studio\Auth\Model\CodeChallengeMethod $codeChallengeMethod (required)
      * @param  string $codeChallenge (required)
      * @param  string $nonce OIDC リプレイ攻撃対策用の値。レスポンスに含めて検証します。 (required)
-     * @param  string|null $organizationId 組織固有の SSO プロバイダ（Okta, Azure AD 等）へルーティングするための組織 ID。未指定時は AuthKit のデフォルトログインフローが使用されます。 (optional)
+     * @param  string|null $organizationId 認可対象の組織を指定する組織 ID（認可サーバが発行する UUID）。  IdP リダイレクトを伴うフローでは、指定された組織は組織固有の SSO プロバイダ（Okta, Azure AD 等）へのルーティングに使用されます。存在しない、非アクティブ、または IdP 未連携の組織 ID を指定した場合はエラーになります。  未指定時は認可サーバが下記の順序で組織を解決します:   - 認可サーバ側でユーザが active な組織に対して active なメンバーシップをちょうど 1 つだけ持つ場合、その組織に自動的にバインドして &#x60;org_id&#x60; クレーム付きの id_token を発行します（silent SSO / 新規ログイン両フロー）。   - 上記に該当しない場合（複数組織所属 / 組織未所属）は &#x60;org_id&#x60; クレーム無しの id_token が発行されます。 (optional)
      * @param  string|null $invitationToken WorkOS 招待メールに含まれるトークン。指定時は WorkOS AuthKit に招待受諾フローとしてパススルーされます。 (optional)
      * @param  \Studio\Auth\Model\Prompt|null $prompt (optional)
      * @param  string|null $context WorkOS AuthKit の Sign-in endpoint から渡される不透明トークン。招待受諾やパスワードリセット等、アプリ外から開始されたフローのコンテキストを保持します。 (optional)
@@ -1851,7 +1851,7 @@ class AuthApi
      * @param  \Studio\Auth\Model\CodeChallengeMethod $codeChallengeMethod (required)
      * @param  string $codeChallenge (required)
      * @param  string $nonce OIDC リプレイ攻撃対策用の値。レスポンスに含めて検証します。 (required)
-     * @param  string|null $organizationId 組織固有の SSO プロバイダ（Okta, Azure AD 等）へルーティングするための組織 ID。未指定時は AuthKit のデフォルトログインフローが使用されます。 (optional)
+     * @param  string|null $organizationId 認可対象の組織を指定する組織 ID（認可サーバが発行する UUID）。  IdP リダイレクトを伴うフローでは、指定された組織は組織固有の SSO プロバイダ（Okta, Azure AD 等）へのルーティングに使用されます。存在しない、非アクティブ、または IdP 未連携の組織 ID を指定した場合はエラーになります。  未指定時は認可サーバが下記の順序で組織を解決します:   - 認可サーバ側でユーザが active な組織に対して active なメンバーシップをちょうど 1 つだけ持つ場合、その組織に自動的にバインドして &#x60;org_id&#x60; クレーム付きの id_token を発行します（silent SSO / 新規ログイン両フロー）。   - 上記に該当しない場合（複数組織所属 / 組織未所属）は &#x60;org_id&#x60; クレーム無しの id_token が発行されます。 (optional)
      * @param  string|null $invitationToken WorkOS 招待メールに含まれるトークン。指定時は WorkOS AuthKit に招待受諾フローとしてパススルーされます。 (optional)
      * @param  \Studio\Auth\Model\Prompt|null $prompt (optional)
      * @param  string|null $context WorkOS AuthKit の Sign-in endpoint から渡される不透明トークン。招待受諾やパスワードリセット等、アプリ外から開始されたフローのコンテキストを保持します。 (optional)
@@ -1969,16 +1969,7 @@ class AuthApi
             throw new InvalidArgumentException("invalid value for \"nonce\" when calling AuthApi.initiateAuthorization, must conform to the pattern /^[A-Za-z0-9._~+\/=-]{8,255}$/.");
         }
         
-        if ($organizationId !== null && strlen($organizationId) > 68) {
-            throw new InvalidArgumentException('invalid length for "$organizationId" when calling AuthApi.initiateAuthorization, must be smaller than or equal to 68.');
-        }
-        if ($organizationId !== null && strlen($organizationId) < 5) {
-            throw new InvalidArgumentException('invalid length for "$organizationId" when calling AuthApi.initiateAuthorization, must be bigger than or equal to 5.');
-        }
-        if ($organizationId !== null && !preg_match("/^org_[A-Za-z0-9]{1,64}$/", $organizationId)) {
-            throw new InvalidArgumentException("invalid value for \"organizationId\" when calling AuthApi.initiateAuthorization, must conform to the pattern /^org_[A-Za-z0-9]{1,64}$/.");
-        }
-        
+
         if ($invitationToken !== null && strlen($invitationToken) > 512) {
             throw new InvalidArgumentException('invalid length for "$invitationToken" when calling AuthApi.initiateAuthorization, must be smaller than or equal to 512.');
         }
